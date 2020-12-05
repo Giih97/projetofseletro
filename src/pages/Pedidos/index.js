@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 
-import { Form, Button, Table } from 'react-bootstrap';
+import { Form, Button, Table, Container } from 'react-bootstrap';
 import Pedido from '../../Components/Pedidos';
 
 
@@ -33,7 +33,7 @@ export default function PagePedidos(props) {
     }
   
     return (
-        <container>
+        <Container>
             <div className="col-lg-6 col-md-6 mx-auto">
                 <Form onSubmit={controleEnvio}>
                     <h4>Fazer Pedidos</h4>
@@ -67,13 +67,12 @@ export default function PagePedidos(props) {
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Cadastrar
-            </Button>
+                    </Button>
                 </Form>
             </div>
-        
-        
-        <Table>
-                <tread>
+                
+        <Table striped bordered hover>
+                <thead>
                     <tr>
                         <th>id</th>
                         <th>nome</th>
@@ -84,13 +83,13 @@ export default function PagePedidos(props) {
                         <th>quantidade</th>
                         <th>total</th>
                     </tr>
-                </tread>
+                </thead>
                 <tbody>
-                {pedidos && pedidos.map (pedido => <Pedido key={pedido.idpedidos} id={pedido.idpedidos} nome_cliente={pedido.nome_cliente} endereco={pedido.endereco} 
-                telefone={pedido.telefone} nome_produto={pedido.nome_produto} valor_unit={pedido.valor_unit} quantidade={pedido.quantidade} valor_final={pedido.valor_final} />)}
+                {pedidos && pedidos.map (pedido => <Pedido key={pedido.idpedidos} id={pedido.idpedidos} nome={pedido.nome_cliente} endereco={pedido.endereco} 
+                telefone={pedido.telefone} produto={pedido.nome_produto} valor={pedido.valor_unit} quantidade={pedido.quantidade} total={pedido.valor_final} />)}
                 </tbody>
             </Table>
-            </container>
+            </Container>
     );
 }
 

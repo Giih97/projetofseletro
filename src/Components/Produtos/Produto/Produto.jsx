@@ -1,9 +1,10 @@
 
-import {Card, Button} from 'react-bootstrap'
+import {Card, Button, Col} from 'react-bootstrap'
 export default function Produto(props) {
 
     return (
-      <Card style={{ width: '18rem' }} id={props.categoria} className={"boxProduto"}>
+      <Col style={{diplay:"inline-block"}} id={props.categoria} className={" boxProduto mb-2"}>
+      <Card style={{ minWidth: '18rem',maxWidth: '18rem', width: '18rem' }}>
       <Card.Img variant="top" src={require(`./img/${props.imagem}`).default } alt="Imagem de Produtos" />
       <Card.Body>
         <Card.Title>{props.categoria}</Card.Title>
@@ -15,6 +16,7 @@ export default function Produto(props) {
         <Button variant="danger">Comprar</Button>
       </Card.Body>
     </Card>
+    </Col>
     )
   }
 

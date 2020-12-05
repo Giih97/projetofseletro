@@ -1,5 +1,5 @@
 
-import { Form, Button, Row } from 'react-bootstrap';
+import { Form, Button, Row, Table, Col } from 'react-bootstrap';
 
 export default function Contatos(props) {
 
@@ -14,14 +14,17 @@ export default function Contatos(props) {
         };
 
         const resposta = await fetch(url, cabecalho);
-        const resultado = await  resposta.json()
+        const resultado = await resposta.json()
     }
 
     return (
 
-        <row>
-            <form>
-                <div className="col-lg-4 col-md-4 mx-auto">
+        <Table>
+            <p className="text-center display-4">Entre em contato conosco</p>
+
+            <Row>
+
+                <Col className="col-lg-4 col-md-4 mx-auto">
                     <Form OnSubmit={controleEnvio}>
 
                         <h4>Mensagem</h4>
@@ -36,18 +39,28 @@ export default function Contatos(props) {
                         <Button variant="primary" type="submit">
                             Enviar
                         </Button>
-                     </Form>   
+                    </Form>
 
-                </div>
-                <p className="text-center display-4">Entre em contato conosco</p>
-            <div className="d-flex text-center mt-5">   
-                <div className="hover">
+                </Col>
+            </Row>
+            <Row>
+
+                <Col className="col-lg-4 col-md-4 mx-auto">
+              
                     <img src={require('./img/email.png').default} alt="" />
-                    <img src={require('./img/wta.jpg').default} alt=""/>
                     
-                </div>
-            </div>
-            </form>
-        </row>
+
+
+                </Col>
+
+                <Col className="col-lg-4 col-md-4 mx-auto">
+              
+                    
+                    <img src={require('./img/wta.jpg').default} alt="" />
+
+
+                </Col>
+            </Row>
+        </Table>
     )
 }
