@@ -8,7 +8,7 @@ export default function Produtos() {
 
     useEffect(() => {
         async function fetchData() {
-            const resposta = await fetch("http://primeirophp/fseltroreact/app/src/api/")
+            const resposta = await fetch("http://localhost:3002/")
 
             const dados = await resposta.json()
             
