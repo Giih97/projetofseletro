@@ -21,7 +21,8 @@ export default function Produtos() {
     
      <Container>
       <Row>
-          {produtos && produtos.map(item => <Produto key={item.id_produto}  categoria={item.categoria} descricao={item.descricao} preco={item.preco} preco_final={item.preco_final} imagem={item.imagem}/>)}
+          {produtos && produtos.map(item => <Produto key={item.id_produto}
+          id_produto={item.id_produto}  categoria={item.categoria} descricao={item.descricao} preco={item.preco} preco_final={item.preco_final} imagem={item.imagem}/>)}
         </Row>
     </Container>
  )

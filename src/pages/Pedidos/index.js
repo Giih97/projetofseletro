@@ -12,7 +12,7 @@ export default function PagePedidos(props) {
 
     useEffect(()=> {
         async function fethData(){
-            const url = "http://localhost/projetos/fseltroreact/app/src/api/pedido.php";
+            const url = "http://localhost:3002/pedidos";
             const resposta = await fetch(url);
             const resultado = await resposta.json();
             setPedidos(resultado);
@@ -20,14 +20,30 @@ export default function PagePedidos(props) {
         fethData();
     }, [])
 
+    const[dados, setdados] = useState({
+        nome_cliente: "",
+        endereco: "",
+        telefone: "",
+        nome_produto: "",
+        valor_unit: "",
+        quantidade: "",
+        valor_final:""
+    });
+
+    function handleChange(evento){
+        dados[evento.target.name] = evento.target.value;
+        console.log (dados)
+    }
     const controleEnvio = async (evento) => {
         evento.preventDefault();
           
-        const dados = new FormData(evento.target); 
-
-        const resposta = await fetch("http://localhost/projetos/fseltroreact/app/src/api/pedido.php", {
+        
+        await fetch("http://localhost:3002/pedidos", {
             method: "POST",
-            body: dados
+            headers: {
+                "Content-Type": "application/json"
+              },
+            body: JSON.stringify(dados)
         } );
        
     }
@@ -39,31 +55,31 @@ export default function PagePedidos(props) {
                     <h4>Fazer Pedidos</h4>
                     <Form.Group>
                         <Form.Label>Nome:</Form.Label>
-                        <Form.Control  type="text" id="nome_cliente" name="nome" />
+                        <Form.Control onChange={handleChange} type="text" id="nome_cliente" name="nome_cliente" />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Endereço:</Form.Label>
-                        <Form.Control  type="text" id="endereco" name="endereco" />
+                        <Form.Control onChange={handleChange}  type="text" id="endereco" name="endereco" />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Telefone:</Form.Label>
-                        <Form.Control  type="text" id="telefone" name="telefone"/>
+                        <Form.Control onChange={handleChange} type="text" id="telefone" name="telefone"/>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Produto:</Form.Label>
-                        <Form.Control  type="text" id="nome_produto" name="produto" />
+                        <Form.Control onChange={handleChange} type="text" id="nome_produto" name="nome_produto" />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Valor Unitário:</Form.Label>
-                        <Form.Control  type="text" id="valor_unit" name="valor" />
+                        <Form.Control onChange={handleChange} type="text" id="valor_unit" name="valor_unit" />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Quantidade:</Form.Label>
-                        <Form.Control  type="text" id="quantidade" name="quantidade" />
+                        <Form.Control onChange={handleChange} type="text" id="quantidade" name="quantidade" />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Preço Final:</Form.Label>
-                        <Form.Control disabled type="text" id="valor_final" />
+                        <Form.Control onChange={handleChange} type="text" id="valor_final" name="valor_final" />
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Cadastrar

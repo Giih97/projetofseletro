@@ -2,20 +2,26 @@ import { BrowserRouter } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import Routes from './routes';
 import Menu from './Components/Menu/Menu'
+import Carrinho from './Components/Carrinho/Carrinho'
 import './App.css';
 import Footer from './Components/Footer/Footer';
+import { Provider } from 'react-redux';
+import store from './store';
 
 
 function App() {
-    return ( 
-<BrowserRouter>
-      <Container fluid>
+  return (
+    <Provider store={store}>
+      <BrowserRouter>
+        <Container fluid>
           <Menu />
-        
-            <Routes />
-            <Footer />
-          </Container>
-    </BrowserRouter>
+          <Carrinho />
+
+          <Routes />
+          <Footer />
+        </Container>
+      </BrowserRouter>
+      </Provider>
     );
 }
 
